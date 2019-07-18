@@ -42,5 +42,4 @@ export async function sendEmail(sender: string, recipient: string, subject: stri
   console.log(`Send email result: ${JSON.stringify(fetchResult, null, 2)}`);
   const fetchResultJson = await fetchResult.json();
   console.log(`Send email result JSON: ${JSON.stringify(fetchResultJson, null, 2)}`);
-  throw new Error("bad error");
 }
