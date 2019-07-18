@@ -1,15 +1,14 @@
 // components/Hello.tsx
+import _ from "lodash";
 import React from "react";
 import {
   Button, Dimensions,
   SafeAreaView,
-  StatusBar,
   StyleSheet,
   TextInput,
-  // ToastAndroid,
+  ToastAndroid,
   View,
 } from "react-native";
-import { NativeModules, Platform } from "react-native";
 import v4 from "uuid/v4";
 import { Recipient } from "./Configuration";
 import { configuration } from "./environment";
@@ -22,7 +21,6 @@ interface State {
   subject?: string;
   body?: string;
   sending?: boolean;
-  sendingError?: string;
 }
 
 export class Emailer extends React.Component<Props, State> {
@@ -45,32 +43,49 @@ export class Emailer extends React.Component<Props, State> {
     console.log(`Recipient, '${recipientName}' selected indicator now, '${recipient.selected}'`);
   }
 
-  clearFields() {
-    // ToastAndroid.show("A pikachu appeared nearby !", ToastAndroid.SHORT);
+  resetState() {
     this.setState({
-      body: undefined,
       subject: undefined,
+      body: undefined,
+      sending: undefined,
     });
   }
 
-  sendEmail() {
-    this.setState({ sending: true, sendingError: undefined });
+  async sendEmail() {
+    this.setState({ sending: true });
     const recipients = Object.keys(this.state.recipients).map((recipientName) => this.state.recipients[recipientName]);
     const addresses = recipients.filter((recipient) => recipient.selected).map((recipient) => recipient.email);
+    const errors: any[] = [];
     for (const address of addresses) {
-      sendEmail(
-        configuration.sender,
-        address,
-        this.state.subject,
-        this.state.body).then((error) => {
-          if (error) {
-            this.setState({ sending: false, sendingError: error });
-            setTimeout(() => this.setState({ sendingError: undefined }), 5000);
-          } else {
-            this.setState({ sending: false });
-            this.clearFields();
-          }
-        });
+      ToastAndroid.showWithGravity(
+        "Sending email(s)...",
+        ToastAndroid.SHORT,
+        ToastAndroid.TOP,
+      );
+      try {
+        await sendEmail(
+          configuration.sender,
+          address,
+          this.state.subject,
+          this.state.body);
+      } catch (error) {
+        errors.push(error);
+      }
+    }
+
+    if (errors.length > 0) {
+      ToastAndroid.showWithGravity(
+        JSON.stringify(errors, null, 2),
+        ToastAndroid.LONG,
+        ToastAndroid.TOP,
+      );
+    } else {
+      this.resetState();
+      ToastAndroid.showWithGravity(
+        "Successfully sent email(s)",
+        ToastAndroid.SHORT,
+        ToastAndroid.TOP,
+      );
     }
   }
 
@@ -116,7 +131,7 @@ export class Emailer extends React.Component<Props, State> {
             <Button
               // Clear button
               key={v4()}
-              onPress={() => this.clearFields()}
+              onPress={() => this.resetState()}
               title="Clear"
               color="red"
               accessibilityLabel="Clear"
