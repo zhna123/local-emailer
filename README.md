@@ -1,7 +1,9 @@
-#local-emailer
+# local-emailer
 A simple form written with react-native that interacts directly with GMail APIs to send emails.
 
-#Configuration
+![image](https://user-images.githubusercontent.com/2091382/61651927-ef2ee800-ac84-11e9-8bd7-04dcc38b4c21.png)
+
+# Configuration
 A project, set of credentials, and permanent refresh token should be generated using these instructions: https://stackoverflow.com/questions/48918069/how-to-use-google-sheets-rest-api-directly-to-create-a-sheet/48940829#48940829
 
 Create a file, `src/Configuration/.google_token.json` with contents like this:
