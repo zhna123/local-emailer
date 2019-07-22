@@ -1,6 +1,6 @@
 
 import qs from "qs";
-import { configuration } from "../src/environment";
+import { configuration } from "./Configuration";
 
 export async function getAccessToken() {
   const parameters: RequestInit = {

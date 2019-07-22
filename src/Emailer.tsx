@@ -10,8 +10,7 @@ import {
   View,
 } from "react-native";
 import v4 from "uuid/v4";
-import { Recipient } from "./Configuration";
-import { configuration } from "./environment";
+import { configuration, Recipient } from "./Configuration";
 import { sendEmail } from "./Google";
 
 export interface Props { }
