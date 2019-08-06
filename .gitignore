@@ -1,5 +1,5 @@
 node_modules/**/*
-.expo/*
+.expo*
 npm-debug.*
 *.jks
 *.p12
@@ -9,5 +9,5 @@ npm-debug.*
 web-build/
 web-report/
 .DS_Store
-**/.google_token.json
-**/.recipients.json
+**/GoogleToken.ts
+**/Recipients.ts

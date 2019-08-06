@@ -39,7 +39,6 @@ export class Emailer extends React.Component<Props, State> {
     const recipient = this.state.recipients[recipientName];
     recipient.selected = !recipient.selected;
     this.setState(this.state);
-    console.log(`Recipient, '${recipientName}' selected indicator now, '${recipient.selected}'`);
   }
 
   resetState() {
@@ -56,11 +55,15 @@ export class Emailer extends React.Component<Props, State> {
     const addresses = recipients.filter((recipient) => recipient.selected).map((recipient) => recipient.email);
     const errors: any[] = [];
     for (const address of addresses) {
-      ToastAndroid.showWithGravity(
-        "Sending email(s)...",
-        ToastAndroid.SHORT,
-        ToastAndroid.TOP,
-      );
+      try {
+        ToastAndroid.showWithGravity(
+          "Sending email(s)...",
+          ToastAndroid.SHORT,
+          ToastAndroid.TOP,
+        );
+      } catch (error) {
+        // console.log(`Could not show sending toast.`);
+      }
       try {
         await sendEmail(
           configuration.sender,
@@ -73,18 +76,28 @@ export class Emailer extends React.Component<Props, State> {
     }
 
     if (errors.length > 0) {
-      ToastAndroid.showWithGravity(
-        JSON.stringify(errors, null, 2),
-        ToastAndroid.LONG,
-        ToastAndroid.TOP,
-      );
+      try {
+        console.log(`${JSON.stringify(errors, null, 2)}`);
+        ToastAndroid.showWithGravity(
+          JSON.stringify(errors, null, 2),
+          ToastAndroid.LONG,
+          ToastAndroid.TOP,
+        );
+      } catch (error) {
+        // console.log(`Could not show errors toast, error: ${error}`);
+        // console.log(`Errors: ${errors}`);
+      }
     } else {
       this.resetState();
-      ToastAndroid.showWithGravity(
-        "Successfully sent email(s)",
-        ToastAndroid.SHORT,
-        ToastAndroid.TOP,
-      );
+      try {
+        ToastAndroid.showWithGravity(
+          "Successfully sent email(s)",
+          ToastAndroid.SHORT,
+          ToastAndroid.TOP,
+        );
+      } catch (error) {
+        // console.log(`Could not show success toast: ${error}`);
+      }
     }
   }
 
@@ -114,6 +127,7 @@ export class Emailer extends React.Component<Props, State> {
               style={styles.subject}
               value={this.state.subject}
               autoFocus={true}
+              testID="cd7b46a4-2d81-47bf-abc1-7142aba8a7b0"
             />
           </View>
           <View>
@@ -124,6 +138,7 @@ export class Emailer extends React.Component<Props, State> {
               onChangeText={(body) => this.setState({ body })}
               style={styles.body}
               value={this.state.body}
+              testID="6b50a3ac-a102-4150-823c-e20d44f0c84d"
             />
           </View>
           <View style={styles.actionButtonGroup}>
@@ -142,11 +157,11 @@ export class Emailer extends React.Component<Props, State> {
               title="Send"
               color="green"
               accessibilityLabel="Send"
+              testID="2d8395f6-03a5-4c61-9c3b-595143aec8bf"
             />
           </View>
         </View>
-      </SafeAreaView>
-    );
+      </SafeAreaView>);
   }
 }
 

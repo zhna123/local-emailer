@@ -1,5 +1,5 @@
-import googleToken from "./.google_token.json";
-import recipientConfiguration from "./.recipients.json";
+import {googleToken} from "./GoogleToken";
+import {recipientConfiguration} from "./Recipients";
 
 export interface Configuration {
   defaultRecipient: string;
