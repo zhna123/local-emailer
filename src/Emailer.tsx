@@ -109,8 +109,6 @@ export class Emailer extends React.Component<Props, State> {
   }
 
   render() {
-    console.log(`hex${JSON.stringify(hex, null, 2)}`);
-    console.log(`blue${JSON.stringify(blue, null, 2)}`);
     const emailButtons = Object.keys(this.state.recipients).map((recipientName) => {
       const recipient = this.state.recipients[recipientName];
       return <AwesomeButton
@@ -187,22 +185,20 @@ export class Emailer extends React.Component<Props, State> {
 const width = Dimensions.get("window").width * .7;
 const marginTop = Dimensions.get("window").height * .03;
 const textInputBorder: TextStyle = {
-  paddingHorizontal: Dimensions.get("window").width * .01,
-  paddingVertical: Dimensions.get("window").width * .01,
-  borderWidth: 1,
-  borderRadius: 5,
   borderColor: hex.base01,
+  borderRadius: 5,
+  borderWidth: 1,
 };
 const styles = StyleSheet.create({
   actionButtonGroup: {
-    borderWidth: 1,
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop,
     width,
   },
   body: {
-    ...textInputBorder,
+    paddingHorizontal: Dimensions.get("window").width * .01,
+    paddingVertical: Dimensions.get("window").width * .01,
     backgroundColor: hex.base02,
     marginTop,
     textAlignVertical: "top",
@@ -210,7 +206,6 @@ const styles = StyleSheet.create({
     width,
   },
   recipientButtonGroup: {
-    borderWidth: 1,
     flexDirection: "row",
     justifyContent: "space-between",
     width: Dimensions.get("window").width * .6,
@@ -225,11 +220,11 @@ const styles = StyleSheet.create({
   },
   root: {
     backgroundColor: hex.base03,
-    borderWidth: 1,
     flex: 1,
   },
   subject: {
-    ...textInputBorder,
+    paddingHorizontal: Dimensions.get("window").width * .01,
+    paddingVertical: Dimensions.get("window").width * .01,
     backgroundColor: hex.base02,
     color: hex.base0,
     marginTop,

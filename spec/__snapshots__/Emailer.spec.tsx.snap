@@ -5,7 +5,6 @@ exports[`Emailer renders correctly 1`] = `
   style={
     Object {
       "backgroundColor": "#002b36",
-      "borderWidth": 1,
       "flex": 1,
     }
   }
@@ -25,7 +24,6 @@ exports[`Emailer renders correctly 1`] = `
     <View
       style={
         Object {
-          "borderWidth": 1,
           "flexDirection": "row",
           "justifyContent": "space-between",
           "width": 450,
@@ -450,9 +448,6 @@ exports[`Emailer renders correctly 1`] = `
         style={
           Object {
             "backgroundColor": "#073642",
-            "borderColor": "#586e75",
-            "borderRadius": 5,
-            "borderWidth": 1,
             "color": "#839496",
             "marginTop": 40.019999999999996,
             "paddingHorizontal": 7.5,
@@ -474,9 +469,6 @@ exports[`Emailer renders correctly 1`] = `
         style={
           Object {
             "backgroundColor": "#073642",
-            "borderColor": "#586e75",
-            "borderRadius": 5,
-            "borderWidth": 1,
             "color": "#839496",
             "marginTop": 40.019999999999996,
             "paddingHorizontal": 7.5,
@@ -492,7 +484,6 @@ exports[`Emailer renders correctly 1`] = `
     <View
       style={
         Object {
-          "borderWidth": 1,
           "flexDirection": "row",
           "justifyContent": "space-between",
           "marginTop": 40.019999999999996,
