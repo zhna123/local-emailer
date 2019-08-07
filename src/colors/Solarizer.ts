@@ -1,6 +1,30 @@
-import Colr from "colr";
+export type RgbColor = [number, number, number];
 
-export interface HexColorMap {
+export interface RgbColorMap {
+  yellow: RgbColor;
+  orange: RgbColor;
+  red: RgbColor;
+  magenta: RgbColor;
+  violet: RgbColor;
+  blue: RgbColor;
+  cyan: RgbColor;
+  green: RgbColor;
+  asStringMap: () => RgbColorStringMap;
+}
+
+export interface RgbBaseMap {
+  base03: RgbColor;
+  base02: RgbColor;
+  base01: RgbColor;
+  base00: RgbColor;
+  base0: RgbColor;
+  base1: RgbColor;
+  base2: RgbColor;
+  base3: RgbColor;
+  asStringMap: () => RgbBaseStringMap;
+}
+
+export interface RgbColorStringMap {
   yellow: string;
   orange: string;
   red: string;
@@ -9,9 +33,10 @@ export interface HexColorMap {
   blue: string;
   cyan: string;
   green: string;
+  asRgbMap: () => RgbColorMap;
 }
 
-export interface HexBaseMap {
+export interface RgbBaseStringMap {
   base03: string;
   base02: string;
   base01: string;
@@ -20,48 +45,8 @@ export interface HexBaseMap {
   base1: string;
   base2: string;
   base3: string;
+  asRgbMap: () => RgbBaseMap;
 }
-
-export interface RgbColorMap {
-  yellow: [number, number, number];
-  orange: [number, number, number];
-  red: [number, number, number];
-  magenta: [number, number, number];
-  violet: [number, number, number];
-  blue: [number, number, number];
-  cyan: [number, number, number];
-  green: [number, number, number];
-}
-
-export interface RgbBaseMap {
-  base03: [number, number, number];
-  base02: [number, number, number];
-  base01: [number, number, number];
-  base00: [number, number, number];
-  base0: [number, number, number];
-  base1: [number, number, number];
-  base2: [number, number, number];
-  base3: [number, number, number];
-}
-
-export const hex: HexColorMap & HexBaseMap = {
-  base03: "#002b36",
-  base02: "#073642",
-  base01: "#586e75",
-  base00: "#657b83",
-  base0: "#839496",
-  base1: "#93a1a1",
-  base2: "#eee8d5",
-  base3: "#fdf6e3",
-  yellow: "#b58900",
-  orange: "#cb4b16",
-  red: "#dc322f",
-  magenta: "#d33682",
-  violet: "#6c71c4",
-  blue: "#268bd2",
-  cyan: "#2aa198",
-  green: "#859900",
-};
 
 export const rgb: RgbColorMap & RgbBaseMap = {
   base03: [0, 43, 54],
@@ -80,49 +65,79 @@ export const rgb: RgbColorMap & RgbBaseMap = {
   blue: [38, 139, 210],
   cyan: [42, 161, 152],
   green: [133, 153, 0],
+  asStringMap: () => rgbStrings,
+};
+
+export const rgbStrings: RgbColorStringMap & RgbBaseStringMap = {
+  base03: rgbNumberToString(rgb.base03),
+  base02: rgbNumberToString(rgb.base02),
+  base01: rgbNumberToString(rgb.base01),
+  base00: rgbNumberToString(rgb.base00),
+  base0: rgbNumberToString(rgb.base0),
+  base1: rgbNumberToString(rgb.base1),
+  base2: rgbNumberToString(rgb.base2),
+  base3: rgbNumberToString(rgb.base3),
+  yellow: rgbNumberToString(rgb.yellow),
+  orange: rgbNumberToString(rgb.orange),
+  red: rgbNumberToString(rgb.red),
+  magenta: rgbNumberToString(rgb.magenta),
+  violet: rgbNumberToString(rgb.violet),
+  blue: rgbNumberToString(rgb.blue),
+  cyan: rgbNumberToString(rgb.cyan),
+  green: rgbNumberToString(rgb.green),
+  asRgbMap: () => rgb,
 };
 
 export function createBasesFromColor(
-  nonBaseColor: [number, number, number],
+  nonBaseColor: RgbColor,
   correspondingBase: "base03" | "base02" | "base01" | "base00" | "base0" | "base1" | "base2" | "base3",
-): RgbBaseMap {
+): RgbBaseStringMap {
   const baseRgb = rgb[correspondingBase];
-  return {
-    base03: getRgbDifference(nonBaseColor, getRgbDifference(baseRgb, rgb.base03)),
-    base02: getRgbDifference(nonBaseColor, getRgbDifference(baseRgb, rgb.base02)),
-    base01: getRgbDifference(nonBaseColor, getRgbDifference(baseRgb, rgb.base01)),
-    base00: getRgbDifference(nonBaseColor, getRgbDifference(baseRgb, rgb.base00)),
-    base0: getRgbDifference(nonBaseColor, getRgbDifference(baseRgb, rgb.base0)),
-    base1: getRgbDifference(nonBaseColor, getRgbDifference(baseRgb, rgb.base1)),
-    base2: getRgbDifference(nonBaseColor, getRgbDifference(baseRgb, rgb.base2)),
-    base3: getRgbDifference(nonBaseColor, getRgbDifference(baseRgb, rgb.base3)),
+  const base03 = getRgbDifference(nonBaseColor, getRgbDifference(baseRgb, rgb.base03));
+  const base02 = getRgbDifference(nonBaseColor, getRgbDifference(baseRgb, rgb.base02));
+  const base01 = getRgbDifference(nonBaseColor, getRgbDifference(baseRgb, rgb.base01));
+  const base00 = getRgbDifference(nonBaseColor, getRgbDifference(baseRgb, rgb.base00));
+  const base0 = getRgbDifference(nonBaseColor, getRgbDifference(baseRgb, rgb.base0));
+  const base1 = getRgbDifference(nonBaseColor, getRgbDifference(baseRgb, rgb.base1));
+  const base2 = getRgbDifference(nonBaseColor, getRgbDifference(baseRgb, rgb.base2));
+  const base3 = getRgbDifference(nonBaseColor, getRgbDifference(baseRgb, rgb.base3));
+  const colorMap: RgbBaseMap = {
+    base03,
+    base02,
+    base01,
+    base00,
+    base0,
+    base1,
+    base2,
+    base3,
+    asStringMap: () => stringMap,
   };
-}
+  const stringMap: RgbBaseStringMap = {
+    base03: rgbNumberToString(base03),
+    base02: rgbNumberToString(base02),
+    base01: rgbNumberToString(base01),
+    base00: rgbNumberToString(base00),
+    base0: rgbNumberToString(base0),
+    base1: rgbNumberToString(base1),
+    base2: rgbNumberToString(base2),
+    base3: rgbNumberToString(base3),
+    asRgbMap: () => colorMap,
+  };
 
-export function createHexBasesFromColor(
-  baseColor: [number, number, number],
-  correspondingBase: "base03" | "base02" | "base01" | "base00" | "base0" | "base1" | "base2" | "base3",
-): HexBaseMap {
-  const rgbMap = createBasesFromColor(baseColor, correspondingBase);
-  return {
-    base03: Colr.fromRgbArray(rgbMap.base03).toHex(),
-    base02: Colr.fromRgbArray(rgbMap.base02).toHex(),
-    base01: Colr.fromRgbArray(rgbMap.base01).toHex(),
-    base00: Colr.fromRgbArray(rgbMap.base00).toHex(),
-    base0: Colr.fromRgbArray(rgbMap.base0).toHex(),
-    base1: Colr.fromRgbArray(rgbMap.base1).toHex(),
-    base2: Colr.fromRgbArray(rgbMap.base2).toHex(),
-    base3: Colr.fromRgbArray(rgbMap.base3).toHex(),
-  };
+  return stringMap;
 }
 
 export function getRgbDifference(
-  originalRgb: [number, number, number],
-  targetRgb: [number, number, number],
-): [number, number, number] {
+  originalRgb: RgbColor,
+  targetRgb: RgbColor,
+): RgbColor {
   return [
     originalRgb[0] - targetRgb[0],
     originalRgb[1] - targetRgb[1],
     originalRgb[2] - targetRgb[2],
   ];
+}
+
+export function rgbNumberToString(rgbNumber: RgbColor) {
+  return `rgb(${rgbNumber[0]},${rgbNumber[1]},${rgbNumber[2]})`;
 }

@@ -12,13 +12,13 @@ import {
 import AwesomeButton from "react-native-really-awesome-button";
 import v4 from "uuid/v4";
 
-import { createHexBasesFromColor, hex, rgb } from "./colors/Solarizer";
+import { createBasesFromColor, rgb, rgbStrings as bases } from "./colors/Solarizer";
 import { configuration, Recipient } from "./Configuration";
 import { sendEmail } from "./Google";
 
-const blue = createHexBasesFromColor(rgb.blue, "base01");
-const red = createHexBasesFromColor(rgb.red, "base01");
-const green = createHexBasesFromColor(rgb.green, "base01");
+const blue = createBasesFromColor(rgb.blue, "base01");
+const red = createBasesFromColor(rgb.red, "base01");
+const green = createBasesFromColor(rgb.green, "base01");
 
 export interface Props { }
 
@@ -115,9 +115,9 @@ export class Emailer extends React.Component<Props, State> {
         key={this.state.recipients[recipientName].email}
         onPress={() => this.toggleRecipientSelection(recipientName)}
         accessibilityLabel={recipientName}
-        backgroundColor={recipient.selected ? blue.base01 : hex.base01}
-        backgroundActive={recipient.selected ? blue.base02 : hex.base02}
-        backgroundDarker={recipient.selected ? blue.base03 : hex.base03}
+        backgroundColor={recipient.selected ? blue.base01 : bases.base01}
+        backgroundActive={recipient.selected ? blue.base02 : bases.base02}
+        backgroundDarker={recipient.selected ? blue.base03 : bases.base03}
         disabled={this.state.sending}
       >
         {` ${recipientName} `}
@@ -155,9 +155,9 @@ export class Emailer extends React.Component<Props, State> {
               onPress={() => this.resetState()}
               accessibilityLabel="Clear"
               width={width / 3}
-              backgroundColor={this.state.sending ? hex.base01 : red.base01}
-              backgroundActive={this.state.sending ? hex.base02 : red.base02}
-              backgroundDarker={this.state.sending ? hex.base03 : red.base03}
+              backgroundColor={this.state.sending ? bases.base01 : red.base01}
+              backgroundActive={this.state.sending ? bases.base02 : red.base02}
+              backgroundDarker={this.state.sending ? bases.base03 : red.base03}
               disabled={this.state.sending}
             >
               Clear
@@ -169,9 +169,9 @@ export class Emailer extends React.Component<Props, State> {
               accessibilityLabel="Send"
               testID="2d8395f6-03a5-4c61-9c3b-595143aec8bf"
               width={width / 3}
-              backgroundColor={this.state.sending ? hex.base01 : green.base01}
-              backgroundActive={this.state.sending ? hex.base02 : green.base02}
-              backgroundDarker={this.state.sending ? hex.base03 : green.base03}
+              backgroundColor={this.state.sending ? bases.base01 : green.base01}
+              backgroundActive={this.state.sending ? bases.base02 : green.base02}
+              backgroundDarker={this.state.sending ? bases.base03 : green.base03}
               disabled={this.state.sending}
             >
               Send
@@ -185,7 +185,7 @@ export class Emailer extends React.Component<Props, State> {
 const width = Dimensions.get("window").width * .7;
 const marginTop = Dimensions.get("window").height * .03;
 const textInputBorder: TextStyle = {
-  borderColor: hex.base01,
+  borderColor: bases.base01,
   borderRadius: 5,
   borderWidth: 1,
 };
@@ -199,10 +199,10 @@ const styles = StyleSheet.create({
   body: {
     paddingHorizontal: Dimensions.get("window").width * .01,
     paddingVertical: Dimensions.get("window").width * .01,
-    backgroundColor: hex.base02,
+    backgroundColor: bases.base02,
     marginTop,
     textAlignVertical: "top",
-    color: hex.base0,
+    color: bases.base0,
     width,
   },
   recipientButtonGroup: {
@@ -213,20 +213,20 @@ const styles = StyleSheet.create({
   emailForm: {
     alignItems: "center",
     alignSelf: "center",
-    backgroundColor: hex.base03,
+    backgroundColor: bases.base03,
     flex: 1,
     justifyContent: "flex-start",
     marginTop: Dimensions.get("window").height * .1,
   },
   root: {
-    backgroundColor: hex.base03,
+    backgroundColor: bases.base03,
     flex: 1,
   },
   subject: {
     paddingHorizontal: Dimensions.get("window").width * .01,
     paddingVertical: Dimensions.get("window").width * .01,
-    backgroundColor: hex.base02,
-    color: hex.base0,
+    backgroundColor: bases.base02,
+    color: bases.base0,
     marginTop,
     width,
   },

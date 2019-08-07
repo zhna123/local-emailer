@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "buffer": "^5.2.1",
-    "colr": "^1.2.2",
     "expo": "^33.0.0",
     "lodash": "^4.17.15",
     "react": "16.8.3",

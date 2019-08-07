@@ -4,7 +4,7 @@ exports[`Emailer renders correctly 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "#002b36",
+      "backgroundColor": "rgb(0,43,54)",
       "flex": 1,
     }
   }
@@ -14,7 +14,7 @@ exports[`Emailer renders correctly 1`] = `
       Object {
         "alignItems": "center",
         "alignSelf": "center",
-        "backgroundColor": "#002b36",
+        "backgroundColor": "rgb(0,43,54)",
         "flex": 1,
         "justifyContent": "flex-start",
         "marginTop": 133.4,
@@ -77,7 +77,7 @@ exports[`Emailer renders correctly 1`] = `
                 "position": "absolute",
               },
               Object {
-                "backgroundColor": "#002b36",
+                "backgroundColor": "rgb(0,43,54)",
                 "borderRadius": 4,
                 "height": 56,
                 "width": null,
@@ -116,7 +116,7 @@ exports[`Emailer renders correctly 1`] = `
                   "zIndex": 3,
                 },
                 Object {
-                  "backgroundColor": "#586e75",
+                  "backgroundColor": "rgb(88,110,117)",
                   "borderColor": null,
                   "borderRadius": 4,
                   "borderWidth": 0,
@@ -128,7 +128,7 @@ exports[`Emailer renders correctly 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "#073642",
+                  "backgroundColor": "rgb(7,54,66)",
                   "height": 56,
                   "left": 0,
                   "opacity": 0,
@@ -213,7 +213,7 @@ exports[`Emailer renders correctly 1`] = `
                 "position": "absolute",
               },
               Object {
-                "backgroundColor": "#004893",
+                "backgroundColor": "rgb(-50,72,147)",
                 "borderRadius": 4,
                 "height": 56,
                 "width": null,
@@ -252,7 +252,7 @@ exports[`Emailer renders correctly 1`] = `
                   "zIndex": 3,
                 },
                 Object {
-                  "backgroundColor": "#268bd2",
+                  "backgroundColor": "rgb(38,139,210)",
                   "borderColor": null,
                   "borderRadius": 4,
                   "borderWidth": 0,
@@ -264,7 +264,7 @@ exports[`Emailer renders correctly 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "#00539f",
+                  "backgroundColor": "rgb(-43,83,159)",
                   "height": 56,
                   "left": 0,
                   "opacity": 0,
@@ -349,7 +349,7 @@ exports[`Emailer renders correctly 1`] = `
                 "position": "absolute",
               },
               Object {
-                "backgroundColor": "#002b36",
+                "backgroundColor": "rgb(0,43,54)",
                 "borderRadius": 4,
                 "height": 56,
                 "width": null,
@@ -388,7 +388,7 @@ exports[`Emailer renders correctly 1`] = `
                   "zIndex": 3,
                 },
                 Object {
-                  "backgroundColor": "#586e75",
+                  "backgroundColor": "rgb(88,110,117)",
                   "borderColor": null,
                   "borderRadius": 4,
                   "borderWidth": 0,
@@ -400,7 +400,7 @@ exports[`Emailer renders correctly 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "#073642",
+                  "backgroundColor": "rgb(7,54,66)",
                   "height": 56,
                   "left": 0,
                   "opacity": 0,
@@ -447,8 +447,8 @@ exports[`Emailer renders correctly 1`] = `
         rejectResponderTermination={true}
         style={
           Object {
-            "backgroundColor": "#073642",
-            "color": "#839496",
+            "backgroundColor": "rgb(7,54,66)",
+            "color": "rgb(131,148,150)",
             "marginTop": 40.019999999999996,
             "paddingHorizontal": 7.5,
             "paddingVertical": 7.5,
@@ -468,8 +468,8 @@ exports[`Emailer renders correctly 1`] = `
         rejectResponderTermination={true}
         style={
           Object {
-            "backgroundColor": "#073642",
-            "color": "#839496",
+            "backgroundColor": "rgb(7,54,66)",
+            "color": "rgb(131,148,150)",
             "marginTop": 40.019999999999996,
             "paddingHorizontal": 7.5,
             "paddingVertical": 7.5,
@@ -538,7 +538,7 @@ exports[`Emailer renders correctly 1`] = `
                 "position": "absolute",
               },
               Object {
-                "backgroundColor": "#840000",
+                "backgroundColor": "rgb(132,-17,-16)",
                 "borderRadius": 4,
                 "height": 56,
                 "width": 175,
@@ -577,7 +577,7 @@ exports[`Emailer renders correctly 1`] = `
                   "zIndex": 3,
                 },
                 Object {
-                  "backgroundColor": "#dc322f",
+                  "backgroundColor": "rgb(220,50,47)",
                   "borderColor": null,
                   "borderRadius": 4,
                   "borderWidth": 0,
@@ -589,7 +589,7 @@ exports[`Emailer renders correctly 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "#8b0000",
+                  "backgroundColor": "rgb(139,-6,-4)",
                   "height": 56,
                   "left": 0,
                   "opacity": 0,
@@ -674,7 +674,7 @@ exports[`Emailer renders correctly 1`] = `
                 "position": "absolute",
               },
               Object {
-                "backgroundColor": "#2d5600",
+                "backgroundColor": "rgb(45,86,-63)",
                 "borderRadius": 4,
                 "height": 56,
                 "width": 175,
@@ -713,7 +713,7 @@ exports[`Emailer renders correctly 1`] = `
                   "zIndex": 3,
                 },
                 Object {
-                  "backgroundColor": "#859900",
+                  "backgroundColor": "rgb(133,153,0)",
                   "borderColor": null,
                   "borderRadius": 4,
                   "borderWidth": 0,
@@ -725,7 +725,7 @@ exports[`Emailer renders correctly 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "#346100",
+                  "backgroundColor": "rgb(52,97,-51)",
                   "height": 56,
                   "left": 0,
                   "opacity": 0,

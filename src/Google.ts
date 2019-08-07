@@ -13,7 +13,6 @@ export async function getAccessToken() {
       ...configuration.googleAuth.tokenRequestBody,
     }),
   };
-  console.log(`Fetching token with parameters ${JSON.stringify(parameters, null, 2)}`);
   const fetchResult = await fetch(configuration.googleAuth.tokenEndpoint, parameters);
   return (await fetchResult.json()).access_token;
 }
@@ -38,7 +37,6 @@ function handleUnicode(stringValue) {
 
 export async function sendEmail(sender: string, recipient: string, subject: string, body: string) {
   const bearerToken = await getAccessToken();
-  console.log(`got bearer token ${JSON.stringify(bearerToken, null, 2)}`);
   const authorizationHeader = `Bearer ${bearerToken}`;
   const parameters: RequestInit = {
     method: "POST",
