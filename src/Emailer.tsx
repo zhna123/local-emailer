@@ -1,4 +1,3 @@
-// components/Hello.tsx
 import _ from "lodash";
 import React from "react";
 import {
@@ -12,7 +11,7 @@ import {
 import AwesomeButton from "react-native-really-awesome-button";
 import v4 from "uuid/v4";
 
-import { createBasesFromColor, rgb, rgbStrings as bases } from "./colors/Solarizer";
+import { createBasesFromColor, rgb, rgbStrings as bases } from "solarizer";
 import { configuration, Recipient } from "./Configuration";
 import { sendEmail } from "./Google";
 
@@ -174,7 +173,7 @@ export class Emailer extends React.Component<Props, State> {
               backgroundDarker={this.state.sending ? bases.base03 : green.base03}
               disabled={this.state.sending}
             >
-              Send
+              Submit
             </AwesomeButton>
           </View>
         </View>
