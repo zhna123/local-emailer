@@ -2,7 +2,7 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "android": "expo start --android",
-    "build": "expo build:android",
+    "build": "npm run test && expo build:android",
     "eject": "expo eject",
     "ios": "expo start --ios",
     "start": "expo start --tunnel",
@@ -17,7 +17,9 @@
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
-    "react-native-web": "^0.11.4"
+    "react-native-really-awesome-button": "^1.4.2",
+    "react-native-web": "^0.11.4",
+    "solarizer": "^1.0.4"
   },
   "devDependencies": {
     "@types/jest": "^24.0.16",
