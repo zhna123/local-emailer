@@ -173,7 +173,7 @@ export class Emailer extends React.Component<Props, State> {
               backgroundDarker={this.state.sending ? bases.base03 : green.base03}
               disabled={this.state.sending}
             >
-              Submit
+              Send
             </AwesomeButton>
           </View>
         </View>

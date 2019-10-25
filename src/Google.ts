@@ -46,9 +46,9 @@ export async function sendEmail(sender: string, recipient: string, subject: stri
     },
     body: formatEmail(sender, recipient, subject, body),
   };
-  // console.log(`Sending email with parameters: ${JSON.stringify(parameters, null, 2)}`);
+  console.log(`Sending email with parameters: ${JSON.stringify(parameters, null, 2)}`);
   const fetchResult = await fetch(configuration.googleAuth.gmailEndpoint, parameters);
-  // console.log(`Send email result: ${JSON.stringify(fetchResult, null, 2)}`);
+  console.log(`Send email result: ${JSON.stringify(fetchResult, null, 2)}`);
   const fetchResultJson = await fetchResult.json();
-  // console.log(`Send email result JSON: ${JSON.stringify(fetchResultJson, null, 2)}`);
+  console.log(`Send email result JSON: ${JSON.stringify(fetchResultJson, null, 2)}`);
 }
