@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Emailer renders correctly 1`] = `
+<RCTScrollView
+  keyboardShouldPersistTaps="handled"
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View>
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "flex-start",
+          "marginTop": 133.4,
+        }
+      }
+    >
+      <View
+        style={
+          {
+            "flexDirection": "row",
+            "justifyContent": "space-around",
+            "width": 525,
+          }
+        }
+      />
+      <View>
+        <TextInput
+          autoCapitalize="none"
+          autoCorrect={false}
+          autoFocus={true}
+          onChangeText={[Function]}
+          style={
+            {
+              "backgroundColor": "rgb(7,54,66)",
+              "color": "rgb(131,148,150)",
+              "marginTop": 40.019999999999996,
+              "paddingHorizontal": 7.5,
+              "paddingVertical": 7.5,
+              "width": 525,
+            }
+          }
+          testID="cd7b46a4-2d81-47bf-abc1-7142aba8a7b0"
+          value=""
+        />
+      </View>
+      <View>
+        <TextInput
+          autoCapitalize="none"
+          autoCorrect={false}
+          multiline={true}
+          numberOfLines={8}
+          onChangeText={[Function]}
+          style={
+            {
+              "backgroundColor": "rgb(7,54,66)",
+              "color": "rgb(131,148,150)",
+              "marginTop": 40.019999999999996,
+              "paddingHorizontal": 7.5,
+              "paddingVertical": 7.5,
+              "textAlignVertical": "top",
+              "width": 525,
+            }
+          }
+          testID="6b50a3ac-a102-4150-823c-e20d44f0c84d"
+          value=""
+        />
+      </View>
+      <View
+        style={
+          {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginBottom": 40.019999999999996,
+            "marginTop": 40.019999999999996,
+            "width": 525,
+          }
+        }
+      >
+        <AwesomeButton
+          accessibilityLabel="Clear"
+          backgroundActive="rgb(139,-6,-4)"
+          backgroundColor="rgb(220,50,47)"
+          backgroundDarker="rgb(132,-17,-16)"
+          disabled={false}
+          onPress={[Function]}
+          width={175}
+        >
+          Clear
+        </AwesomeButton>
+        <AwesomeButton
+          accessibilityLabel="Send"
+          backgroundActive="rgb(52,97,-51)"
+          backgroundColor="rgb(133,153,0)"
+          backgroundDarker="rgb(45,86,-63)"
+          disabled={false}
+          onPress={[Function]}
+          testID="2d8395f6-03a5-4c61-9c3b-595143aec8bf"
+          width={175}
+        >
+          Send
+        </AwesomeButton>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
