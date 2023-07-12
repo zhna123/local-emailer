@@ -2,7 +2,7 @@ import React from "react";
 import { fireEvent, render, screen, waitFor } from '@testing-library/react-native'
 import renderer from "react-test-renderer";
 import { recipientConfiguration } from "../Configuration/Recipients";
-import { Emailer } from "../Emailer";
+import { Emailer } from "../../screens/Emailer";
 import * as google from "../Google";
 
 jest.mock("../Google", () => {

@@ -12,8 +12,9 @@ import {
 import AwesomeButton from "react-native-really-awesome-button";
 
 import { createBasesFromColor, rgb, rgbStrings as bases } from "solarizer";
-import { configuration, Recipient } from "./Configuration";
-import { sendEmail as send } from "./Google";
+import { configuration, Recipient } from "../src/Configuration";
+import { sendEmail as send } from "../src/Google";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const blue = createBasesFromColor(rgb.blue, "base01");
 const red = createBasesFromColor(rgb.red, "base01");
@@ -30,24 +31,50 @@ export const Emailer: React.FC = () => {
   const [body, setBody] = useState<string>('')
   const [sending, setSending] = useState<boolean>(false)
 
+  const [defaultName, setDefaultName] = useState<string>('')
+
   const { styles, width } = useStyle()
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const value = await AsyncStorage.getItem('default-recipient');
+        if (value !== null) {
+          setDefaultName(value)
+        }
+      } catch (e) {
+        console.log(`error reading async storage value: ${e}`)
+      }
+    };
+    getData()
+  }, [])
 
   useEffect(() => {
     configuration.recipients.forEach((recipient) => {
       const recipientName: string = recipient.name;
       setRecipients((previousRecipients) => {
         const updatedRecipients = {...previousRecipients, [recipientName]: recipient}
-
-        if (recipientName === configuration.defaultRecipient) {
-          recipient.selected = true;
-          updatedRecipients[recipientName] = recipient
-        }
-
         return updatedRecipients
-      })
-      
+      })  
     });
   }, [])
+
+  useEffect(() => {
+    // configuration.recipients.forEach((recipient) => {
+    //   const recipientName: string = recipient.name;
+    //   setRecipients((previousRecipients) => {
+    //     const updatedRecipients = {...previousRecipients, [recipientName]: recipient}
+    //     if (recipientName === defaultName) {
+
+    //       recipient.selected = true;
+    //       updatedRecipients[recipientName] = recipient
+    //     }
+
+    //     return updatedRecipients
+    //   })
+      
+    // });
+  }, [defaultName])
 
   const toggleRecipientSelection = (recipientName: string) => {
     const recipient = recipients[recipientName];
@@ -114,6 +141,9 @@ export const Emailer: React.FC = () => {
 
   const emailButtons = Object.keys(recipients).map((name, index) => {
     const recipient = recipients[name];
+    if (name === defaultName) {
+      recipient.selected = true;
+    }
     return <AwesomeButton
       key={recipient.id}
       onPress={() => toggleRecipientSelection(name)}
@@ -129,6 +159,7 @@ export const Emailer: React.FC = () => {
 
   return (
     <ScrollView style={styles.root} 
+      contentContainerStyle={{flexGrow: 1}}
       keyboardShouldPersistTaps='handled' >
         <View style={styles.emailForm} >
           <View style={styles.recipientButtonGroup}>{emailButtons}</View>
@@ -201,7 +232,6 @@ const useStyle = () => {
       justifyContent: "space-between",
       marginTop,
       marginBottom,
-      width,
     },
     body: {
       paddingHorizontal: dimensions.width * .01,
@@ -210,21 +240,18 @@ const useStyle = () => {
       marginTop,
       textAlignVertical: "top",
       color: bases.base0,
-      width,
     },
     recipientButtonGroup: {
       flexDirection: "row",
       justifyContent: "space-around",
-      width
     },
     emailForm: {
-      alignItems: "center",
       flex: 1,
-      justifyContent: "flex-start",
       paddingTop: dimensions.height * .1,
+      paddingHorizontal: 30
     },
     root: {
-      flex: 1,
+      backgroundColor: bases.base03,
     },
     subject: {
       paddingHorizontal: dimensions.width * .01,
@@ -232,7 +259,6 @@ const useStyle = () => {
       backgroundColor: bases.base02,
       color: bases.base0,
       marginTop,
-      width
     },
   });
 
