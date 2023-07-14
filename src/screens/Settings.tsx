@@ -2,8 +2,8 @@ import { View, Text } from 'react-native';
 import { rgbStrings as bases } from "solarizer";
 import {Picker} from '@react-native-picker/picker';
 import { useEffect, useState } from 'react';
-import { recipientConfiguration } from '../src/Configuration/Recipients';
-import { Recipient, configuration } from '../src/Configuration';
+import { recipientConfiguration } from '../Configuration/Recipients';
+import { Recipient, configuration } from '../Configuration';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -30,6 +30,7 @@ export default function Settings() {
     getData()
   }, [])
 
+  // store the value each time selectedRecipient changes
   useEffect(() => {
     const storeData = async (value: string) => {
       try {

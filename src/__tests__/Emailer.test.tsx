@@ -2,8 +2,9 @@ import React from "react";
 import { fireEvent, render, screen, waitFor } from '@testing-library/react-native'
 import renderer from "react-test-renderer";
 import { recipientConfiguration } from "../Configuration/Recipients";
-import { Emailer } from "../../screens/Emailer";
+import { Emailer } from "../screens/Emailer";
 import * as google from "../Google";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 jest.mock("../Google", () => {
   const originalModule = jest.requireActual('../Google')
@@ -17,18 +18,24 @@ jest.mock("../Google", () => {
 jest.mock('react-native-really-awesome-button', () => "AwesomeButton");
 
 describe("Emailer", () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     (google.sendEmail as any).mockClear();
-    render(<Emailer />);
+    await waitFor(() => render(<Emailer />));
   });
 
-  it("renders correctly", () => {
-    const tree = renderer.create(<Emailer />);
+  it("renders correctly", async () => {
+    const tree = await waitFor(() => renderer.create(<Emailer />));
     const treeJson = tree.toJSON();
-    expect(treeJson).toMatchSnapshot();
+    expect(treeJson).toMatchSnapshot()
   });
 
-  it("Should gather and send all fields", () => {
+  it('checks if Async Storage is used', async () => {
+    await waitFor(() => 
+      expect(AsyncStorage.getItem).toBeCalledWith('default-recipient')
+    )
+  });
+
+  it("Should gather and send all fields", async () => {
     const testSubject = "Test Subject";
     const testBody = "Test Body";
 
@@ -44,9 +51,9 @@ describe("Emailer", () => {
     fireEvent.press(sendButton);
 
     const defaultRecipient = recipientConfiguration.recipients
-      .find((recipient) => recipient.name === recipientConfiguration.defaultRecipient);
+      .find((recipient) => recipient.name === 'Mac');
     
-    waitFor(() => {
+    await waitFor(() => {
       expect(google.sendEmail).toHaveBeenCalledWith(
         recipientConfiguration.sender,
         defaultRecipient!.email,
@@ -54,10 +61,9 @@ describe("Emailer", () => {
         testBody,
       );
     })
-    
   });
 
-  it("Should be able to handle chinese text", () => {
+  it("Should be able to handle chinese text", async () => {
     const testSubject = "我是一只猫";
     const testBody = "我有一个弟弟";
 
@@ -73,7 +79,7 @@ describe("Emailer", () => {
     const defaultRecipient = recipientConfiguration.recipients
       .find((recipient) => recipient.name === recipientConfiguration.defaultRecipient);
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(google.sendEmail).toHaveBeenCalledWith(
         recipientConfiguration.sender,
         defaultRecipient!.email,

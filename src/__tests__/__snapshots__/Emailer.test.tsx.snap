@@ -2,10 +2,15 @@
 
 exports[`Emailer renders correctly 1`] = `
 <RCTScrollView
+  contentContainerStyle={
+    {
+      "flexGrow": 1,
+    }
+  }
   keyboardShouldPersistTaps="handled"
   style={
     {
-      "flex": 1,
+      "backgroundColor": "rgb(0,43,54)",
     }
   }
 >
@@ -13,10 +18,9 @@ exports[`Emailer renders correctly 1`] = `
     <View
       style={
         {
-          "alignItems": "center",
           "flex": 1,
-          "justifyContent": "flex-start",
-          "marginTop": 133.4,
+          "paddingHorizontal": 30,
+          "paddingTop": 133.4,
         }
       }
     >
@@ -25,10 +29,40 @@ exports[`Emailer renders correctly 1`] = `
           {
             "flexDirection": "row",
             "justifyContent": "space-around",
-            "width": 525,
           }
         }
-      />
+      >
+        <AwesomeButton
+          accessibilityLabel="Mac"
+          backgroundActive="rgb(-43,83,159)"
+          backgroundColor="rgb(38,139,210)"
+          backgroundDarker="rgb(-50,72,147)"
+          disabled={false}
+          onPress={[Function]}
+        >
+           Mac 
+        </AwesomeButton>
+        <AwesomeButton
+          accessibilityLabel="Na"
+          backgroundActive="rgb(7,54,66)"
+          backgroundColor="rgb(88,110,117)"
+          backgroundDarker="rgb(0,43,54)"
+          disabled={false}
+          onPress={[Function]}
+        >
+           Na 
+        </AwesomeButton>
+        <AwesomeButton
+          accessibilityLabel="Eli"
+          backgroundActive="rgb(7,54,66)"
+          backgroundColor="rgb(88,110,117)"
+          backgroundDarker="rgb(0,43,54)"
+          disabled={false}
+          onPress={[Function]}
+        >
+           Eli 
+        </AwesomeButton>
+      </View>
       <View>
         <TextInput
           autoCapitalize="none"
@@ -42,7 +76,6 @@ exports[`Emailer renders correctly 1`] = `
               "marginTop": 40.019999999999996,
               "paddingHorizontal": 7.5,
               "paddingVertical": 7.5,
-              "width": 525,
             }
           }
           testID="cd7b46a4-2d81-47bf-abc1-7142aba8a7b0"
@@ -64,7 +97,6 @@ exports[`Emailer renders correctly 1`] = `
               "paddingHorizontal": 7.5,
               "paddingVertical": 7.5,
               "textAlignVertical": "top",
-              "width": 525,
             }
           }
           testID="6b50a3ac-a102-4150-823c-e20d44f0c84d"
@@ -78,7 +110,6 @@ exports[`Emailer renders correctly 1`] = `
             "justifyContent": "space-between",
             "marginBottom": 40.019999999999996,
             "marginTop": 40.019999999999996,
-            "width": 525,
           }
         }
       >
@@ -89,7 +120,7 @@ exports[`Emailer renders correctly 1`] = `
           backgroundDarker="rgb(132,-17,-16)"
           disabled={false}
           onPress={[Function]}
-          width={175}
+          width={200}
         >
           Clear
         </AwesomeButton>
@@ -101,7 +132,7 @@ exports[`Emailer renders correctly 1`] = `
           disabled={false}
           onPress={[Function]}
           testID="2d8395f6-03a5-4c61-9c3b-595143aec8bf"
-          width={175}
+          width={200}
         >
           Send
         </AwesomeButton>

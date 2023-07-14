@@ -2,13 +2,13 @@ import 'react-native-gesture-handler';
 
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
-import { Emailer } from './screens/Emailer';
+import { Emailer } from './src/screens/Emailer';
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { rgbStrings as bases } from "solarizer";
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import Settings from './screens/Settings';
+import Settings from './src/screens/Settings';
 
 import {
   DrawerContentScrollView,

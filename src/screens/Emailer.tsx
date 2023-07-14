@@ -12,8 +12,8 @@ import {
 import AwesomeButton from "react-native-really-awesome-button";
 
 import { createBasesFromColor, rgb, rgbStrings as bases } from "solarizer";
-import { configuration, Recipient } from "../src/Configuration";
-import { sendEmail as send } from "../src/Google";
+import { configuration, Recipient } from "../Configuration";
+import { sendEmail as send } from "../Google";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const blue = createBasesFromColor(rgb.blue, "base01");
@@ -35,6 +35,7 @@ export const Emailer: React.FC = () => {
 
   const { styles, width } = useStyle()
 
+  // get default recipient after initial render
   useEffect(() => {
     const getData = async () => {
       try {
@@ -49,6 +50,7 @@ export const Emailer: React.FC = () => {
     getData()
   }, [])
 
+  // get all recipient after initial render
   useEffect(() => {
     configuration.recipients.forEach((recipient) => {
       const recipientName: string = recipient.name;
@@ -59,21 +61,13 @@ export const Emailer: React.FC = () => {
     });
   }, [])
 
+  // update default recipient
   useEffect(() => {
-    // configuration.recipients.forEach((recipient) => {
-    //   const recipientName: string = recipient.name;
-    //   setRecipients((previousRecipients) => {
-    //     const updatedRecipients = {...previousRecipients, [recipientName]: recipient}
-    //     if (recipientName === defaultName) {
-
-    //       recipient.selected = true;
-    //       updatedRecipients[recipientName] = recipient
-    //     }
-
-    //     return updatedRecipients
-    //   })
-      
-    // });
+    if (defaultName !== '') {
+      const recipient = recipients[defaultName];
+      recipient.selected = true;
+      setRecipients({...recipients, [defaultName]: recipient})
+    }
   }, [defaultName])
 
   const toggleRecipientSelection = (recipientName: string) => {
@@ -141,9 +135,7 @@ export const Emailer: React.FC = () => {
 
   const emailButtons = Object.keys(recipients).map((name, index) => {
     const recipient = recipients[name];
-    if (name === defaultName) {
-      recipient.selected = true;
-    }
+
     return <AwesomeButton
       key={recipient.id}
       onPress={() => toggleRecipientSelection(name)}
