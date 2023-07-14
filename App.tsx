@@ -14,6 +14,7 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
+import { RootDrawerParamList } from './types';
 
 
 export default function App() {
@@ -27,7 +28,7 @@ export default function App() {
   );
 }
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator<RootDrawerParamList>();
 
 // adding this to control the scroll view keyboardShouldPersistTaps prop
 function CustomDrawerContent(props) {

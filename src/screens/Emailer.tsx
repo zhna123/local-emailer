@@ -15,6 +15,7 @@ import { createBasesFromColor, rgb, rgbStrings as bases } from "solarizer";
 import { configuration, Recipient } from "../Configuration";
 import { sendEmail as send } from "../Google";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { RootDrawerScreenProps } from "../../types";
 
 const blue = createBasesFromColor(rgb.blue, "base01");
 const red = createBasesFromColor(rgb.red, "base01");
@@ -24,7 +25,7 @@ interface RecipientDict {
   [index: string]: Recipient
 }
 
-export const Emailer: React.FC = () => {
+export const Emailer = ({ route, navigation }: RootDrawerScreenProps<'Emailer'>) => {
   
   const [recipients, setRecipients] = useState<RecipientDict>({})
   const [subject, setSubject] = useState<string>('')

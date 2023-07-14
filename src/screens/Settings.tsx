@@ -3,11 +3,12 @@ import { rgbStrings as bases } from "solarizer";
 import {Picker} from '@react-native-picker/picker';
 import { useEffect, useState } from 'react';
 import { recipientConfiguration } from '../Configuration/Recipients';
-import { Recipient, configuration } from '../Configuration';
+import { Recipient } from '../Configuration';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { RootDrawerScreenProps } from '../../types';
 
 
-export default function Settings() {
+export default function Settings({ route, navigation }: RootDrawerScreenProps<'Settings'>) {
   
   const [selectedRecipient, setSelectedRecipient] = useState('');
   const [recipients, setRecipients] = useState<Recipient[]>([])
