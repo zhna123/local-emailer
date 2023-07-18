@@ -84,7 +84,6 @@ export const Emailer = ({ route, navigation }: RootDrawerScreenProps<'Emailer'>)
           message,
           duration,
         );
-        return
       } catch (error) {
         console.log(`error when showing toast - message: ${message}; error: ${error}`);
       }
@@ -102,10 +101,12 @@ export const Emailer = ({ route, navigation }: RootDrawerScreenProps<'Emailer'>)
   const sendEmail = async () => {
     if (Object.keys(recipients).filter((name) => recipients[name].selected).length === 0) {
       showToast("At least one recipient needs to be selected.")
+      return
     }
 
     if (subject.trim().length === 0) {
       showToast("Subject is required.");
+      return 
     }
     
     setSending(true)
