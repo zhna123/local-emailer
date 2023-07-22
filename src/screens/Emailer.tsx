@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   useWindowDimensions,
   StyleSheet,
@@ -32,9 +32,15 @@ export const Emailer = ({ route, navigation }: RootDrawerScreenProps<'Emailer'>)
   const [body, setBody] = useState<string>('')
   const [sending, setSending] = useState<boolean>(false)
 
+  const subjectInput = useRef<TextInput>(null);
+
   const [defaultName, setDefaultName] = useState<string>('')
 
   const { styles, width } = useStyle()
+
+  useEffect(() => {
+    subjectInput.current?.focus()
+  }, [subject])
 
   // get default recipient after initial render
   useEffect(() => {
@@ -163,9 +169,11 @@ export const Emailer = ({ route, navigation }: RootDrawerScreenProps<'Emailer'>)
               onChangeText={(subject) => setSubject(subject)}
               style={styles.subject}
               value={subject}
+              ref={subjectInput}
               autoFocus={true}
               autoCapitalize="none"
               autoCorrect={false}
+              blurOnSubmit={false}
               testID="cd7b46a4-2d81-47bf-abc1-7142aba8a7b0"
             />
           </View>
@@ -179,6 +187,7 @@ export const Emailer = ({ route, navigation }: RootDrawerScreenProps<'Emailer'>)
               value={body}
               autoCapitalize="none"
               autoCorrect={false}
+              blurOnSubmit={true}
               testID="6b50a3ac-a102-4150-823c-e20d44f0c84d"
             />
           </View>
@@ -241,7 +250,7 @@ const useStyle = () => {
     },
     emailForm: {
       flex: 1,
-      paddingTop: dimensions.height * .1,
+      paddingTop: 40,
       paddingHorizontal: 30
     },
     root: {
